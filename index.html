@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GOLIATH Bar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- <link href="Manrope:wght@600;700;800&family=Inter:wght@400;500;600" rel="stylesheet"> -->
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">
+        <a href="#">GOLIATH BAR</a></div>
+      <div class="header-links">
+        <nav>
+          <a href="#faq">FAQ</a>
+        </nav>
+        <a class="nav-cta" href="#signup">Get notified</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <h1 class="headline">One Bar, One Meal</h1>
+      <p class="hero-sub">Goliath is the bar built to replace a meal so you can eat and get back to your day.</p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="document.getElementById('email').focus()">Get notified at launch</button>
+      </div>
+    </section>
+
+
+    <section class="three" id="how">
+      <div class="cards">
+        <div class="card">
+          <div class="tag">Calories</div>
+          <div class="big">1000<span class="u">cal</span></div>
+          <p>A full meal's worth of energy in one bar — built for the days you don't have time to sit down and eat.</p>
+        </div>
+        <div class="card">
+          <div class="tag">Protein</div>
+          <div class="big">100<span class="u">g</span></div>
+          <p>Enough to actually matter, without stacking a shake, a bar, and a snack just to hit your number.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="signup-block" id="signup">
+      <h2>Be first to try it.</h2>
+      <p class="sub">Goliath isn't available yet. Leave your email and we'll send one message the day it launches.</p>
+
+      <div class="signup-panel">
+        <div id="formState">
+          <form id="signupForm">
+            <input type="email" id="email" name="email" placeholder="Email address" required>
+            <button type="submit">Notify me</button>
+          </form>
+          <p class="fine">No spam. Unsubscribe anytime.</p>
+        </div>
+        <div class="signup-success" id="successMsg">
+          <h3>You're on the list.</h3>
+          <p>We'll email you the moment Goliath is ready to order.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <h2>Questions, answered.</h2>
+
+      <div class="faq-item">
+        <button class="faq-q">Is 1000 calories in one bar too much? <span class="icon">+</span></button>
+        <div class="faq-a"><p>It's designed to replace a full meal, not sit alongside one. For people who want that much food in a single, no-prep format.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">When does it launch? <span class="icon">+</span></button>
+        <div class="faq-a"><p>We're only in the early production phase. Sign up and you'll hear about it the moment it's confirmed.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Where will I be able to buy it? <span class="icon">+</span></button>
+        <div class="faq-a"><p>Directly from our online store at launch, with wider availability planned after that.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Will signing up cost me anything? <span class="icon">+</span></button>
+        <div class="faq-a"><p>No. It's just an email list. One message when Goliath is available, and nothing else.</p></div>
+      </div>
+    </section>
+
+    <section class="closer">
+      <h2>Stop overthinking what to eat.</h2>
+      <button class="btn-primary" onclick="document.getElementById('email').focus()">Get notified at launch</button>
+    </section>
+
+    <footer>
+      <span>© 2026 Goliath Bar Co.</span>
+      <div class="footer-links">
+        <a href="#how">How it works</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </footer>
+  </div>
+
+<script>
+  // signup form
+  const form = document.getElementById('signupForm');
+  const formState = document.getElementById('formState');
+  const success = document.getElementById('successMsg');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    // TODO: replace with real submission — POST to Klaviyo/Mailchimp/Shopify
+    // customer list endpoint, or a serverless function of your choice.
+    formState.style.display = 'none';
+    success.classList.add('show');
+  });
+
+  // sticky header divider
+  const headerEl = document.querySelector('header');
+  window.addEventListener('scroll', function(){
+    headerEl.classList.toggle('scrolled', window.scrollY > 8);
+  });
+
+  // faq accordion
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', function(){
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(other){
+        other.classList.remove('open');
+        other.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+</body>
+</html>
