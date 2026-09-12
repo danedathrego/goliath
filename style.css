@@ -49,6 +49,9 @@
     font-weight:700;
     font-size:18px;
   }
+  .logo:hover{
+    color:var(--accent);
+  }
   nav{
     display:flex;
     gap:32px;
@@ -64,6 +67,9 @@
     font-size:14px;
     font-weight:500;
     display:inline-block;
+  }
+  .nav-cta:hover{
+    background:var(--accent);
   }
   .header-links{display:flex;align-items:center;gap:32px;}
 
